@@ -19,6 +19,11 @@ class Faqs extends BaseController
 
         $faqs->limit($rows)->page($page);
 
+        if ($req['q']) {
+            $searchValue = '%' . str_replace(['%', '_'], ['/%', '/_'], $req['q']) . '%';
+            $faqs->andWhere('question LIKE ? ESCAPE "/" OR answer LIKE ? ESCAPE "/"', [$searchValue, $searchValue]);
+        }
+
         $faqs->findAll();
 
         $data = [];
