@@ -3,9 +3,12 @@
 namespace Miaoxing\Faq\Service;
 
 use miaoxing\plugin\BaseModel;
+use Miaoxing\Plugin\Traits\CamelCase;
 
 class FaqRecord extends BaseModel
 {
+    use CamelCase;
+
     protected $table = 'faqs';
 
     protected $providers = [
@@ -25,6 +28,4 @@ class FaqRecord extends BaseModel
     protected $deletedAtColumn = 'deleted_at';
 
     protected $deletedByColumn = 'deleted_by';
-
-    protected $camel = true;
 }
