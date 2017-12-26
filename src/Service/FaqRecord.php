@@ -25,4 +25,6 @@ class FaqRecord extends BaseModel
     protected $deletedAtColumn = 'deleted_at';
 
     protected $deletedByColumn = 'deleted_by';
+
+    protected $camel = true;
 }
