@@ -3,11 +3,11 @@
 namespace Miaoxing\Faq\Service;
 
 use miaoxing\plugin\BaseModel;
-use Miaoxing\Plugin\Traits\CamelCase;
+use Miaoxing\Plugin\Model\CamelCaseTrait;
 
 class FaqRecord extends BaseModel
 {
-    use CamelCase;
+    use CamelCaseTrait;
 
     protected $table = 'faqs';
 
