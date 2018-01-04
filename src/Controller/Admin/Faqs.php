@@ -3,7 +3,7 @@
 namespace Miaoxing\Faq\Controller\Admin;
 
 use Miaoxing\Faq\Service\FaqRecord;
-use miaoxing\plugin\BaseController;
+use Miaoxing\Plugin\BaseController;
 
 class Faqs extends BaseController
 {
