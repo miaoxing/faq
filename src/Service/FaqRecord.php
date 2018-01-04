@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Faq\Service;
 
-use miaoxing\plugin\BaseModel;
+use Miaoxing\Plugin\BaseModel;
 use Miaoxing\Plugin\Model\CamelCaseTrait;
 
 class FaqRecord extends BaseModel
