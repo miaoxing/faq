@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Faq\Service;
 
-use miaoxing\plugin\BaseService;
+use Miaoxing\Plugin\BaseService;
 
 class Faq extends BaseService
 {
