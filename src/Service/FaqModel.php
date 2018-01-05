@@ -12,6 +12,4 @@ class FaqModel extends BaseModelV2
     use HasAppIdTrait;
     use SoftDeleteTrait;
     use FaqTrait;
-
-    protected $table = 'faqs';
 }
