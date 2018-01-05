@@ -1,13 +1,10 @@
 <?php
 
-namespace plugins\faq\docs {
-
-    use Miaoxing\Faq\Service\Faq;
-    use Miaoxing\Faq\Service\FaqRecord;
+namespace MiaoxingDoc\Faq {
 
     /**
-     * @property    Faq $faq FAQ
-     * @method      FaqRecord|FaqRecord[] faq()
+     * @property    \Miaoxing\Faq\Service\FaqModel $faqModel
+     * @method      \Miaoxing\Faq\Service\FaqModel|\Miaoxing\Faq\Service\FaqModel[] faqModel()
      */
     class AutoComplete
     {
@@ -17,9 +14,12 @@ namespace plugins\faq\docs {
 namespace {
 
     /**
-     * @return \plugins\faq\docs\AutoComplete
+     * @return MiaoxingDoc\Faq\AutoComplete
      */
     function wei()
     {
     }
+
+    /** @var Miaoxing\Faq\Service\FaqModel $faqModel */
+    $faq = wei()->faqModel;
 }

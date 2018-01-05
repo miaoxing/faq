@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Faq\Controller\Admin;
 
-use Miaoxing\Faq\Service\FaqRecord;
+use Miaoxing\Faq\Service\FaqModel;
 use Miaoxing\Plugin\BaseController;
 
 class Faqs extends BaseController
@@ -22,30 +22,16 @@ class Faqs extends BaseController
     {
         switch ($req['_format']) {
             case 'json':
-                $faqs = wei()->faq()->curApp();
-
-                $faqs
-                    ->notDeleted()
+                $faqs = wei()->faqModel()
                     ->limit($req['rows'])
-                    ->page($req['page']);
-
-                // 排序
-                $sort = $req['sort'] ?: 'id';
-                $order = $req['order'] == 'asc' ? 'ASC' : 'DESC';
-                $faqs->orderBy($sort, $order);
+                    ->page($req['page'])
+                    ->setQueryParams($req)
+                    ->sort();
 
                 $faqs->findAll();
 
-                // 数据
-                $data = [];
-                /** @var FaqRecord $faq */
-                foreach ($faqs as $faq) {
-                    $data[] = $faq->toArray() + [
-                        ];
-                }
-
                 return $this->suc([
-                    'data' => $data,
+                    'data' => $faqs,
                     'page' => (int) $req['page'],
                     'rows' => (int) $req['rows'],
                     'records' => $faqs->count(),
@@ -63,7 +49,7 @@ class Faqs extends BaseController
 
     public function editAction($req)
     {
-        $faq = wei()->faq()->curApp()->notDeleted()->findId($req['id']);
+        $faq = wei()->faqModel()->findId($req['id']);
 
         return get_defined_vars();
     }
@@ -85,7 +71,7 @@ class Faqs extends BaseController
             return $this->err($validator->getFirstMessage());
         }
 
-        $faq = wei()->faq()->curApp()->notDeleted()->findId($req['id']);
+        $faq = wei()->faqModel()->findId($req['id']);
 
         $faq->save($req);
 
@@ -94,9 +80,9 @@ class Faqs extends BaseController
 
     public function destroyAction($req)
     {
-        $faq = wei()->faq()->curApp()->notDeleted()->findOneById($req['id']);
+        $faq = wei()->faqModel()->findOneById($req['id']);
 
-        $faq->softDelete();
+        $faq->destroy();
 
         return $this->suc();
     }

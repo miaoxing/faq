@@ -11,13 +11,11 @@ class Faqs extends BaseController
         $rows = 10;
         $page = $req['page'] > 0 ? (int) $req['page'] : 1;
 
-        $faqs = wei()->faq()
-            ->curApp()
-            ->notDeleted()
+        $faqs = wei()->faqModel()
             ->desc('views')
-            ->desc('id');
-
-        $faqs->limit($rows)->page($page);
+            ->desc('id')
+            ->limit($rows)
+            ->page($page);
 
         if ($req['q']) {
             $searchValue = '%' . str_replace(['%', '_'], ['/%', '/_'], $req['q']) . '%';
@@ -26,13 +24,8 @@ class Faqs extends BaseController
 
         $faqs->findAll();
 
-        $data = [];
-        foreach ($faqs as $faq) {
-            $data[] = $faq->toArray();
-        }
-
         $ret = [
-            'data' => $data,
+            'data' => $faqs,
             'page' => $page,
             'rows' => $rows,
             'records' => $faqs->count(),
@@ -50,10 +43,7 @@ class Faqs extends BaseController
 
     public function viewAction($req)
     {
-        $faq = wei()->faq()
-            ->curApp()
-            ->notDeleted()
-            ->findOneById($req['id']);
+        $faq = wei()->faqModel()->findOneById($req['id']);
 
         $faq->incr('views', 1)->save();
 
