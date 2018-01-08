@@ -65,7 +65,7 @@ class Faqs extends BaseController
             'names' => [
                 'question' => '问题',
                 'answer' => '答案',
-            ]
+            ],
         ]);
         if (!$validator->isValid()) {
             return $this->err($validator->getFirstMessage());
