@@ -2,12 +2,13 @@
 
 namespace Miaoxing\Faq\Controller\Admin;
 
-use Miaoxing\Faq\Service\FaqModel;
+use Miaoxing\Admin\Action\CrudTrait;
 use Miaoxing\Plugin\BaseController;
-use Miaoxing\Plugin\Service\Request;
 
 class Faqs extends BaseController
 {
+    use CrudTrait;
+
     protected $controllerName = '常见问题管理';
 
     protected $actionPermissions = [
@@ -19,41 +20,7 @@ class Faqs extends BaseController
 
     protected $displayPageHeader = true;
 
-    public function indexAction(Request $req)
-    {
-        if ($req->json()) {
-            $faqs = wei()->faqModel()
-                ->limit($req['rows'])
-                ->page($req['page'])
-                ->setQueryParams($req)
-                ->sort();
-
-            $faqs->findAll();
-
-            return $this->suc([
-                'data' => $faqs,
-                'page' => (int) $req['page'],
-                'rows' => (int) $req['rows'],
-                'records' => $faqs->count(),
-            ]);
-        }
-
-        return get_defined_vars();
-    }
-
-    public function newAction($req)
-    {
-        return $this->editAction($req);
-    }
-
-    public function editAction($req)
-    {
-        $faq = wei()->faqModel()->findId($req['id']);
-
-        return get_defined_vars();
-    }
-
-    public function updateAction($req)
+    protected function beforeSave($req)
     {
         $validator = wei()->validate([
             'data' => $req,
@@ -69,19 +36,6 @@ class Faqs extends BaseController
         if (!$validator->isValid()) {
             return $this->err($validator->getFirstMessage());
         }
-
-        $faq = wei()->faqModel()->findId($req['id']);
-
-        $faq->save($req);
-
-        return $this->suc();
-    }
-
-    public function destroyAction($req)
-    {
-        $faq = wei()->faqModel()->findOneById($req['id']);
-
-        $faq->destroy();
 
         return $this->suc();
     }
