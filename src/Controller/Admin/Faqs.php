@@ -4,6 +4,7 @@ namespace Miaoxing\Faq\Controller\Admin;
 
 use Miaoxing\Faq\Service\FaqModel;
 use Miaoxing\Plugin\BaseController;
+use Miaoxing\Plugin\Service\Request;
 
 class Faqs extends BaseController
 {
@@ -18,28 +19,26 @@ class Faqs extends BaseController
 
     protected $displayPageHeader = true;
 
-    public function indexAction($req)
+    public function indexAction(Request $req)
     {
-        switch ($req['_format']) {
-            case 'json':
-                $faqs = wei()->faqModel()
-                    ->limit($req['rows'])
-                    ->page($req['page'])
-                    ->setQueryParams($req)
-                    ->sort();
+        if ($req->json()) {
+            $faqs = wei()->faqModel()
+                ->limit($req['rows'])
+                ->page($req['page'])
+                ->setQueryParams($req)
+                ->sort();
 
-                $faqs->findAll();
+            $faqs->findAll();
 
-                return $this->suc([
-                    'data' => $faqs,
-                    'page' => (int) $req['page'],
-                    'rows' => (int) $req['rows'],
-                    'records' => $faqs->count(),
-                ]);
-
-            default:
-                return get_defined_vars();
+            return $this->suc([
+                'data' => $faqs,
+                'page' => (int) $req['page'],
+                'rows' => (int) $req['rows'],
+                'records' => $faqs->count(),
+            ]);
         }
+
+        return get_defined_vars();
     }
 
     public function newAction($req)

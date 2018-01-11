@@ -3,10 +3,11 @@
 namespace Miaoxing\Faq\Controller;
 
 use Miaoxing\Plugin\BaseController;
+use Miaoxing\Plugin\Service\Request;
 
 class Faqs extends BaseController
 {
-    public function indexAction($req)
+    public function indexAction(Request $req)
     {
         $rows = 10;
         $page = $req['page'] > 0 ? (int) $req['page'] : 1;
@@ -31,14 +32,11 @@ class Faqs extends BaseController
             'records' => $faqs->count(),
         ];
 
-        switch ($req['_format']) {
-            case 'json':
-                return $this->suc($ret);
-
-            default:
-
-                return get_defined_vars();
+        if ($req->json()) {
+            return $this->suc($ret);
         }
+
+        return get_defined_vars();
     }
 
     public function viewAction($req)
