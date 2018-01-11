@@ -4,6 +4,7 @@ namespace Miaoxing\Faq\Controller\Admin;
 
 use Miaoxing\Admin\Action\CrudTrait;
 use Miaoxing\Plugin\BaseController;
+use Miaoxing\Plugin\Service\Request;
 
 class Faqs extends BaseController
 {
@@ -20,7 +21,7 @@ class Faqs extends BaseController
 
     protected $displayPageHeader = true;
 
-    protected function beforeSave($req)
+    protected function beforeSave(Request $req)
     {
         $validator = wei()->validate([
             'data' => $req,
