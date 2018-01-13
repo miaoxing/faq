@@ -24,9 +24,9 @@ class Faqs extends BaseController
     protected function beforeSave(Request $req)
     {
         $ret = wei()->v()
-            ->key('question', '问题')->required(true)
-            ->key('answer', '答案')->required(true)
-            ->validate($req);
+            ->key('question', '问题')
+            ->key('answer', '答案')
+            ->check($req);
 
         return $ret;
     }
