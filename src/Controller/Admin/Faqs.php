@@ -23,21 +23,11 @@ class Faqs extends BaseController
 
     protected function beforeSave(Request $req)
     {
-        $validator = wei()->validate([
-            'data' => $req,
-            'rules' => [
-                'question' => [],
-                'answer' => [],
-            ],
-            'names' => [
-                'question' => '问题',
-                'answer' => '答案',
-            ],
-        ]);
-        if (!$validator->isValid()) {
-            return $this->err($validator->getFirstMessage());
-        }
+        $ret = wei()->v()
+            ->key('question', '问题')->required(true)
+            ->key('answer', '答案')->required(true)
+            ->validate($req);
 
-        return $this->suc();
+        return $ret;
     }
 }
