@@ -4,7 +4,7 @@ $view->layout();
 ?>
 
 <?= $block('css') ?>
-<link rel="stylesheet" href="<?= $asset('plugins/faq/css/faqs.css') ?>">
+<link rel="stylesheet" href="<?= $wei->fAsset('faq.css') ?>">
 <?= $block->end() ?>
 
 <form class="search-form" action="" method="get">
@@ -26,32 +26,12 @@ $view->layout();
       <i class="js-faq-angel bm-angle-right list-feedback"></i>
     </a>
     <div class="js-faq-answer list-body p-b p-r text-normal display-none">
-      <%== answer %>
+      <%= answer %>
     </div>
   </li>
 </script>
 
 <?= $block('js') ?>
-<script>
-  require(['comps/artTemplate/template.min'], function () {
-    template.helper('$', $);
-
-    var $list = $('.js-faq-list').list({
-      url: '<?= $url->query('faqs.json') ?>',
-      template: template.compile($('.js-faq-item-tpl').html()),
-      localData: <?= json_encode($ret) ?>
-    });
-
-    $list.on('click', '.js-faq-link', function () {
-      var $item = $(this).closest('.js-faq-item');
-      $item.find('.js-faq-angel').toggleClass('answer-open');
-
-      var $answer =  $item.find('.js-faq-answer');
-      $answer.toggle();
-      if ($answer.is(':visible')) {
-        $.post($.url('faqs/%s/view.json', $(this).data('id')));
-      }
-    });
-  });
-</script>
+<script src="<?= $wei->fAsset('faq-manifest.js') ?>"></script>
+<script src="<?= $wei->fAsset('faq.js') ?>"></script>
 <?= $block->end() ?>

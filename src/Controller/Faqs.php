@@ -36,6 +36,11 @@ class Faqs extends BaseController
             return $this->suc($ret);
         }
 
+        $this->js += [
+            'route' => 'faqs/index',
+            'faqs' => $ret,
+        ];
+
         return get_defined_vars();
     }
 

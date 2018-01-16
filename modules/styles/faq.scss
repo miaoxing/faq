@@ -1,0 +1,29 @@
+.search-form {
+  padding: 7px;
+  position: relative;
+}
+
+.search-input {
+  -webkit-appearance: none;
+  display: block;
+  padding: 5px;
+  font-size: 14px;
+  width: 100%;
+  border: 0;
+  border-radius: 5px; /* 用于1倍设备像素比 */
+}
+
+.search-submit {
+  position: absolute;
+  right: 0;
+  top: -1px;
+  width: 44px;
+  height: 45px;
+  font-size: 18px;
+  border: 0;
+  background-color: transparent;
+}
+
+.answer-open {
+  transform: rotate(90deg);
+}
