@@ -37,7 +37,6 @@ class Faqs extends BaseController
         }
 
         $this->js += [
-            'route' => 'faqs/index',
             'faqs' => $ret,
         ];
 
