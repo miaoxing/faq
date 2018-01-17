@@ -1,7 +1,7 @@
-import '../styles/faq.scss';
+import './faq.scss';
 
-var req = require.context('./', true, /^(.*\.(js$))[^.]*$/im);
-var module = './' + wei.route + '.js';
+const req = require.context('./', true, /^(.*\.(js$))[^.]*$/im);
+const module = './' + wei.route + '.js';
 
 if (req.keys().indexOf(module) !== -1) {
   const container = new (req(module).default);
