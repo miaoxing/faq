@@ -1,11 +1,8 @@
 <?php
 
 $view->layout();
+$wei->page->addPluginAsset();
 ?>
-
-<?= $block('css') ?>
-<link rel="stylesheet" href="<?= $wei->fAsset('faq.css') ?>">
-<?= $block->end() ?>
 
 <form class="search-form" action="" method="get">
   <div class="border-all border-radius">
@@ -30,8 +27,3 @@ $view->layout();
     </div>
   </li>
 </script>
-
-<?= $block('js') ?>
-<script src="<?= $wei->fAsset('faq-manifest.js') ?>"></script>
-<script src="<?= $wei->fAsset('faq.js') ?>"></script>
-<?= $block->end() ?>

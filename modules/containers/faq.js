@@ -1,13 +1,10 @@
 import '../styles/faq.scss';
 
-import FaqsIndex from './faqs/index';
+var req = require.context('./', true, /^(.*\.(js$))[^.]*$/im);
+var module = './' + wei.route + '.js';
 
-const maps = {
-  'faqs/index': FaqsIndex,
-};
-
-if (maps[wei.route]) {
-  const container = new maps[wei.route];
+if (req.keys().indexOf(module) !== -1) {
+  const container = new (req(module).default);
   container.render();
 } else {
   throw new Error('Container "' + wei.route + '" not found');
