@@ -40,7 +40,7 @@ $view->layout();
     data-href="<%= $.url('admin/faqs/%s/destroy', id) %>">删除</a>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['form', 'dataTable'], function () {
     var $table = this.$('.js-faq-table').dataTable({
