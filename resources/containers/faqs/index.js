@@ -8,6 +8,28 @@ const Answer = styled.div`
   }
 `;
 
+$(document).on('faqsIndexTop', (event, plugin) => {
+  plugin.setState({
+    el: <div>123</div>
+  });
+});
+
+class Plugin extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      el: ''
+    }
+  }
+  componentDidMount() {
+    $(document).trigger(this.props.name, [this]);
+  }
+  render() {
+    return this.state.el
+  }
+}
+
 export default class extends React.Component {
   componentDidMount() {
     const $list = $('.js-faq-list').list({
@@ -39,6 +61,7 @@ export default class extends React.Component {
 
   render() {
     return <div>
+      <Plugin name="faqsIndexTop"><div>1</div></Plugin>
       <form className="search-form" action="" method="get">
         <div className="border-all border-radius">
           <input className="search-input" name="q" defaultValue={$.req('q')} type="text"
