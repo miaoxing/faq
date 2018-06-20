@@ -1,3 +1,22 @@
-import container from 'container';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {AppContainer} from 'react-hot-loader'
 
-container(require.context('.', true, /^(?!.*admin).*\.(\w+)$/));
+import Root from './containers.js';
+
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component/>
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
+
+render(Root)
+
+// if (module.hot) {
+//   module.hot.accept(() => {
+//     render(Root)
+//   })
+// }
