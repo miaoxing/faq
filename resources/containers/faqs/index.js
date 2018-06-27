@@ -8,12 +8,6 @@ const Answer = styled.div`
   }
 `;
 
-$(document).on('faqsIndexTop', (event, plugin) => {
-  plugin.setState({
-    el: <div>123</div>
-  });
-});
-
 class Plugin extends React.Component {
   constructor(props, context) {
     super(props, context);

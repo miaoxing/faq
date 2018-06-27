@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Loadable from "react-loadable";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import 'data/events';
 
 const Loading = () => <div>Loading...</div>;
 
