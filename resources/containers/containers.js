@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Loadable from "react-loadable";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import 'data/events';
+import App from 'app';
+
+const app = new App();
 
 const Loading = () => <div>Loading...</div>;
 
@@ -13,7 +15,7 @@ const Index = Loadable({
 
 const NoMatch = () => <div>404</div>;
 
-const App = () => (
+const ReactApp = () => (
   <Router>
     <Switch>
       <Route exact path={$.url('faqs')} component={Index}/>
@@ -22,4 +24,4 @@ const App = () => (
   </Router>
 );
 
-export default App;
+export default ReactApp;
