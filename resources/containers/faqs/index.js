@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import styled from 'styled-components';
 import Plugin from 'components/Plugin.jsx';
+import '../faq.scss';
 
 const Answer = styled.div`
   img {
