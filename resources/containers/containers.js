@@ -9,7 +9,7 @@ const app = new App();
 const Loading = () => <div>Loading...</div>;
 
 const Index = Loadable({
-  loader: () => import('./faqs/index'),
+  loader: () => import('./faqs/Index'),
   loading: Loading,
 });
 
