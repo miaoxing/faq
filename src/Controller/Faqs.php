@@ -10,7 +10,7 @@ class Faqs extends BaseController
     public function indexAction(Request $req)
     {
         $rows = 10;
-        $page = $req['page'];// > 0 ? (int) $req['page'] : 1;
+        $page = $req['page']; // > 0 ? (int) $req['page'] : 1;
 
         $faqs = wei()->faqModel()
             ->desc('views')
@@ -47,7 +47,7 @@ class Faqs extends BaseController
     {
         $faq = wei()->faqModel()->findOneById($req['id']);
 
-        $faq->incr('views', 1)->save();
+        $faq->incr('views')->save();
 
         return $this->suc();
     }
