@@ -1,6 +1,5 @@
 <?php
 
-use Miaoxing\Job\Service\Job;
 
 $view->layout();
 ?>
@@ -10,7 +9,7 @@ $view->layout();
 <?= $block->end() ?>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
 
     <!-- PAGE CONTENT BEGINS -->
     <div class="table-responsive">
