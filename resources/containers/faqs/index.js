@@ -1,4 +1,5 @@
 import faqItem from '../../templates/faq-item.ejs';
+import 'plugins/app/libs/jquery-list/jquery-list';
 
 export default class FaqIndex {
   render() {
