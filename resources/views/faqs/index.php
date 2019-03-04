@@ -5,7 +5,7 @@ $wei->page->addPluginAsset();
 ?>
 
 <form class="search-form" action="" method="get">
-  <div class="border-all border-radius">
+  <div class="border-all rounded-lg">
     <input class="search-input" name="q" value="<?= $e($req['q']) ?>" type="text" placeholder="请输入问题或答案搜索">
   </div>
   <button class="search-submit">
