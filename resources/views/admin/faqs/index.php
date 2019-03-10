@@ -41,7 +41,7 @@ $view->layout();
 
 <?= $block->js() ?>
 <script>
-  require(['form', 'plugins/admin/js/data-table'], function () {
+  require(['plugins/admin/js/form', 'plugins/admin/js/data-table'], function () {
     var $table = this.$('.js-faq-table').dataTable({
       ajax: {
         url: $.queryUrl('admin/faqs.json')

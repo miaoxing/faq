@@ -55,7 +55,7 @@ $view->layout();
 <?= $block->js() ?>
 <script>
   require([
-    'form',
+    'plugins/admin/js/form',
     'ueditor',
     'plugins/app/js/validation',
     'plugins/app/libs/jquery.populate/jquery.populate',
